@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<html lang="en">
+<!-- CSS only -->
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+
+
+<section layout:fragment="content">
+  <div class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="display-4 fw-normal">E-commerce project</h1>
+        <p class="lead fw-normal">E-commerce project made with java using spring framework for educational purpose.</p>
+      </div>
+    </div>
+  </div>
+  <!--<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col " th:each="p : ${projects}">
+      <div class="card">
+        <img th:src="${p.projectImage.link}" class="card-img-top" alt="..." >
+        <div class="card-body">
+          <h5 class="card-title" th:text="${p.projectName}"></h5>
+          <div class="rating">
+            <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-3"><i class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
+            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
+          </div>
+          <p class="card-text text-truncate" th:text="${p.projectDescription}"></p>
+          &lt;!&ndash;                    <a th:href="@{/project/details(id=${p.id})}" class="btn btn-outline-primary btn-sm">Learn more</a>&ndash;&gt;
+          <div class="product-info smart-form">
+            <div class="row">
+              <div class="col">
+                <a th:href="@{/project/details(id=${p.id})}" class="btn btn-outline-primary btn-sm">Learn more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</section>
+
+</body>
+</html>

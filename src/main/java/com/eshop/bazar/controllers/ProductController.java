@@ -61,7 +61,6 @@ public class ProductController {
 
     @PostMapping("/edit")
     public String saveProduct(Product product){
-
         productService.createOrUpdateProduct(product);
         return "redirect:/admin/products";
     }

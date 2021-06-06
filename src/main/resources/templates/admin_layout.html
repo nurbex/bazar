@@ -22,27 +22,27 @@
   <link th:href="@{/styles/dashboard.css}" rel="stylesheet"/>
 </head>
 <body >
-<header class="container">
+<header class="container-fluid">
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary shadow-sm" style="">
-    <div class="container-md">
+    <div class="container-fluid">
       <a class="navbar-brand" href="/" aria-label="Bazar.net">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 24 24">
           <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098l2.904 2.905z"/>
         </svg>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" th:href="@{/}">Bazar.net</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ADMIN')">Projects</a>
+            <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ADMIN')">Admin Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/files" sec:authorize="hasAuthority('ADMIN')">Files</a>
+            <a class="nav-link" href="/admin/customer" sec:authorize="hasAuthority('USER')">User profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register" sec:authorize="!isAuthenticated()">Sign-Up</a>
@@ -68,8 +68,8 @@
 
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link active" href="/admin">

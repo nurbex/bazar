@@ -5,9 +5,11 @@ import java.util.List;
 
 @Entity
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    Long id;
+
     private String name;
 
     public enum TYPE {
@@ -15,12 +17,12 @@ public class Store {
         ONLINE
     };
 
-    @OneToOne(cascade=CascadeType.ALL)
-    Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "store_product")
-    List<Product> products;
+    private List<Product> product;
 
     private TYPE storeType;
 
@@ -50,12 +52,8 @@ public class Store {
         this.address = address;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public List<Product> getProduct() {
+        return product;
     }
 
     public TYPE getStoreType() {

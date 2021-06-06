@@ -26,19 +26,23 @@
         <img th:unless=${#lists.isEmpty(p.images)} th:src="${p.images[0].link}" class="card-img-top" alt="..." >
         <img th:if=${#lists.isEmpty(p.images)} th:src="@{/images/No_image_available.svg.png}" class="card-img-top" alt="..." >
         <div class="card-body">
-          <h5 class="card-title"><a th:href="@{/public/product/details(id=${p.id})}" th:text="${p.name}"></a></h5>
+          <div class="card-title">
+            <a  th:href="@{/public/product/details(id=${p.id})}" class="text-decoration-none" >
+              <h5 th:text="${p.name}"></h5>
+            </a>
+          </div>
           <div class="rating">
-              <label for="stars-rating-5"><i id="stars-rating-5" class="fa fa-star"></i></label>
-              <label for="stars-rating-4"><i id="stars-rating-4" class="fa fa-star"></i></label>
-              <label for="stars-rating-3"><i id="stars-rating-3" class="fa fa-star text-primary"></i></label>
-              <label for="stars-rating-2"><i id="stars-rating-2" class="fa fa-star text-primary"></i></label>
-              <label for="stars-rating-1"><i id="stars-rating-1" class="fa fa-star text-primary"></i></label>
+            <label for="stars-rating-1"><i id="stars-rating-1" class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-2"><i id="stars-rating-2" class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-3"><i id="stars-rating-3" class="fa fa-star text-warning"></i></label>
+            <label for="stars-rating-4"><i id="stars-rating-4" class="fa fa-star"></i></label>
+            <label for="stars-rating-5"><i id="stars-rating-5" class="fa fa-star"></i></label>
           </div>
           <p class="card-text text-truncate" th:text="${p.price}"></p>
           <div class="product-info smart-form">
             <div class="row">
               <div class="col">
-                <a th:href="@{/cart/add/{id}(id=${p.id})}" class="btn btn-outline-primary btn-sm">Add to cart</a>
+                <a th:href="@{/cart/add/{id}(id=${p.id})}" class="btn btn-warning btn-sm" >Add to cart</a>
               </div>
             </div>
           </div>

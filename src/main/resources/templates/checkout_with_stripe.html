@@ -13,12 +13,11 @@
 </head>
 <body>
 <section layout:fragment="content">
-  <div class="row">
-    <div class="col">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col col-md-8">
       <table class="table">
         <thead>
         <tr>
-          <th></th>
           <th>Product</th>
           <th>Availability</th>
           <th>Quantity</th>
@@ -27,10 +26,6 @@
         </thead>
         <tbody>
         <tr th:each="item : ${session.cart.cartItemList}">
-          <td>
-            <img th:unless=${#lists.isEmpty(item.product.images)} th:src="${item.product.images[0].link}" width="50" height="50" class="img-responsive">
-            <img th:if=${#lists.isEmpty(item.product.images)} th:src="@{/images/No_image_available.svg.png}" width="50" height="50" class="img-responsive">
-          </td>
           <td th:text="${item.product.name}"></td>
           <td>in stock</td>
           <td th:text="${item.quantity}"></td>
@@ -41,15 +36,14 @@
         <tr>
           <td></td>
           <td></td>
-          <td></td>
           <td>Total Price: </td>
           <td th:text="${totalPrice}"> </td>
         </tr>
         </tfoot>
       </table>
     </div>
-    <div class="col">
-      <div class="card" style="width: 18rem;">
+    <div class="col col-md-4">
+      <div class="card">
         <div class="card-header">
           Shipment Address
         </div>

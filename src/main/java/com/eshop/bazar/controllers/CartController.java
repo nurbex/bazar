@@ -90,6 +90,33 @@ public class CartController {
         return "cart_details";
     }
 
+
+    @GetMapping("/items/add/{id}")
+    public String addItemFromCard(@PathVariable Long id, @ModelAttribute("cart") Cart cart){
+        //1. checking if product exists, if not redirects to "/"
+        Optional<Product> optionalProduct = productService.getProductById(id);
+        if (!optionalProduct.isPresent())
+            return "redirect:/";
+        //2. checking if cart exist?
+        if (cart.getUuid() == null) {
+            cart.setUuid(UUID.randomUUID());
+        }
+        //3. checking if cartItem with same product exist in cart, in order not to duplicate
+        boolean match=false;
+        for( CartItem cartItem: cart.getCartItemList()){
+            if(cartItem.getProduct().getId()==id){
+                match=true;
+                cartItem.setQuantity(cartItem.getQuantity()+1);
+                cartItem.setTotalPrice(cartItem.getTotalPrice() + cartItem.getProduct().getPrice());
+            }
+        }
+        if(!match){
+            Product p = optionalProduct.get();
+            CartItem cartItem = new CartItem(p, 1, p.getPrice() * 1);
+            cart.getCartItemList().add(cartItem);
+        }
+        return "redirect:/cart/details";
+    }
     @GetMapping("/items/delete/{id}")
     public String deleteItemFromCard(@PathVariable String id, @ModelAttribute("cart") Cart cart){
         cart.removeItem(UUID.fromString(id));

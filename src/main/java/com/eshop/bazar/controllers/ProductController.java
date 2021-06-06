@@ -54,7 +54,7 @@ public class ProductController {
         Optional<Product> productOptional = productService.getProductById(id);
         if (!productOptional.isPresent())
             return "redirect:/admin/products";
-
+        model.addAttribute("imageList", imageService.getImageList());
         model.addAttribute("product", productOptional.get());
         return "edit_product";
     }

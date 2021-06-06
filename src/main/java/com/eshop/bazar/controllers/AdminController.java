@@ -11,7 +11,6 @@ public class AdminController {
 
     @GetMapping
     public String getAdminMainPage(Authentication auth){
-
         return "admin_main_page";
     }
 }

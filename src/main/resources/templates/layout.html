@@ -39,7 +39,7 @@
             <a class="nav-link active" aria-current="page" th:href="@{/}">Bazar.net</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/projects" sec:authorize="hasAuthority('ADMIN')">Projects</a>
+            <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ADMIN')">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/admin/files" sec:authorize="hasAuthority('ADMIN')">Files</a>

@@ -46,6 +46,7 @@ public class StoreController {
             return "redirect:/admin/stores/list";
 
         model.addAttribute("store", optionalStore.get());
+        model.addAttribute("types", Store.TYPE.values());
         return "new_store";
     }
 

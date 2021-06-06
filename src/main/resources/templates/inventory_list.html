@@ -10,7 +10,11 @@
 </head>
 <body>
 <section layout:fragment="content">
-  <a th:each="store : ${stores}"  th:href="@{/admin/inventory/list(storeId=${store.id})}" th:text="${store.name}"></a>
+  <ul class="nav justify-content-center">
+    <li class="nav-item"  th:each="store : ${stores}">
+      <a class="nav-link active" th:href="@{/admin/inventory/list(storeId=${store.id})}" th:text="${store.name}"></a>
+    </li>
+  </ul>
 
   <table class="table" th:if = "${#bools.isFalse(isFirstTimeAccess)}">
     <thead>

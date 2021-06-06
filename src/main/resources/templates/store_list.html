@@ -30,8 +30,8 @@
       <td th:text="${s.address.address1}"></td>
       <td th:text="${s.storeType}"></td>
       <td>
-        <a th:href="@{/admin/stores/delete(id=${s.id})}" th:text="Delete" class="btn btn-danger"></a> |
-        <a th:href="@{/admin/stores/edit(id=${s.id})}" th:text="Edit" class="btn btn-primary"></a>
+        <a th:href="@{/admin/stores/delete(id=${s.id})}" th:text="Delete" class="btn btn-outline-danger btn-sm"></a> |
+        <a th:href="@{/admin/stores/edit(id=${s.id})}" th:text="Edit" class="btn btn-outline-primary btn-sm"></a>
       </td>
     </tr>
     </tbody>

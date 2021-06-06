@@ -14,7 +14,7 @@ public class CustomerController {
 
     @GetMapping
     public String getCustomerHome(){
-        return "redirect:/";
+        return "customer_main_page";
     }
 
     @GetMapping("/profile")

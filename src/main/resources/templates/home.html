@@ -20,32 +20,32 @@
       </div>
     </div>
   </div>
-  <!--<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col " th:each="p : ${projects}">
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+    <div class="col " th:each="p : ${products}">
       <div class="card">
-        <img th:src="${p.projectImage.link}" class="card-img-top" alt="..." >
+        <img th:unless=${#lists.isEmpty(p.images)} th:src="${p.images[0].link}" class="card-img-top" alt="..." >
+        <img th:if=${#lists.isEmpty(p.images)} th:src="@{/images/No_image_available.svg.png}" class="card-img-top" alt="..." >
         <div class="card-body">
-          <h5 class="card-title" th:text="${p.projectName}"></h5>
+          <h5 class="card-title"><a th:href="@{/public/product/details(id=${p.id})}" th:text="${p.name}"></a></h5>
           <div class="rating">
-            <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>
-            <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>
-            <label for="stars-rating-3"><i class="fa fa-star text-warning"></i></label>
-            <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-            <label for="stars-rating-5"><i class="fa fa-star"></i></label>
+              <label for="stars-rating-5"><i id="stars-rating-5" class="fa fa-star"></i></label>
+              <label for="stars-rating-4"><i id="stars-rating-4" class="fa fa-star"></i></label>
+              <label for="stars-rating-3"><i id="stars-rating-3" class="fa fa-star text-primary"></i></label>
+              <label for="stars-rating-2"><i id="stars-rating-2" class="fa fa-star text-primary"></i></label>
+              <label for="stars-rating-1"><i id="stars-rating-1" class="fa fa-star text-primary"></i></label>
           </div>
-          <p class="card-text text-truncate" th:text="${p.projectDescription}"></p>
-          &lt;!&ndash;                    <a th:href="@{/project/details(id=${p.id})}" class="btn btn-outline-primary btn-sm">Learn more</a>&ndash;&gt;
+          <p class="card-text text-truncate" th:text="${p.price}"></p>
           <div class="product-info smart-form">
             <div class="row">
               <div class="col">
-                <a th:href="@{/project/details(id=${p.id})}" class="btn btn-outline-primary btn-sm">Learn more</a>
+                <a th:href="@{/cart/add/{id}(id=${p.id})}" class="btn btn-outline-primary btn-sm">Add to cart</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
 </section>
 
 </body>

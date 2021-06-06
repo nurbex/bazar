@@ -30,9 +30,9 @@
       <td th:text="${p.price}"></td>
       <td th:text="${p.size}"></td>
       <td>
-        <a th:href="@{/admin/products/delete(id=${p.id})}" th:text="Delete" class="btn btn-danger"></a> |
-        <a th:href="@{/admin/products/edit(id=${p.id})}" th:text="Edit" class="btn btn-primary"></a>
-        <a th:href="@{/admin/inventory/accept_product(id=${p.id})}" th:text="PutToStore" class="btn btn-success"></a>
+        <a th:href="@{/admin/products/delete(id=${p.id})}" th:text="Delete" class="btn btn-outline-danger"></a> |
+        <a th:href="@{/admin/products/edit(id=${p.id})}" th:text="Edit" class="btn btn-outline-primary"></a>
+        <a th:href="@{/admin/inventory/accept_product(id=${p.id})}" th:text="PutToStore" class="btn btn-outline-success"></a>
       </td>
     </tr>
     </tbody>

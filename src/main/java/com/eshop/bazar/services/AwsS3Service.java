@@ -13,6 +13,9 @@ import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +72,12 @@ public class AwsS3Service {
         image.setName(key);
         image.setLink("https://s3.us-east-2.amazonaws.com/bazar.images/"+key);
         imageService.create(image);
-
+        //deleting file right after uploading
+        try {
+        Files.delete(Paths.get(file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*

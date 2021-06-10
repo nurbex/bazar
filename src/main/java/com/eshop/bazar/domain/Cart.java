@@ -84,4 +84,9 @@ public class Cart {
                     .collect(Collectors.toList());
         }
     }
+
+    public void emptyCart(){
+        this.cartItemList.clear();
+        this.totalPrice=0.0;
+    }
 }

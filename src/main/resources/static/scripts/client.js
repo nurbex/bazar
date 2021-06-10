@@ -74,7 +74,7 @@ var payWithCard = function(stripe, card, clientSecret) {
       } else {
         // The payment succeeded!
         orderComplete(result.paymentIntent.id);
-        location.href = "/customer/order/list";
+        location.href = "/customer/order/place";
       }
     });
 };

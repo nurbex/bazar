@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("cart")
-@RequestMapping("/order")
+@RequestMapping("/customer/order")
 public class OrderController {
 
     @Autowired
@@ -56,14 +56,14 @@ public class OrderController {
 
         cart.emptyCart();
 
-        return "redirect:/order/list";
+        return "redirect:/customer/order/list";
     }
 
     @GetMapping("/details/{id}")
     public String showOrderDetails(@PathVariable Long id, Model model){
         Optional<Order> optionalOrder = orderService.findById(id);
         if (!optionalOrder.isPresent()){
-            return "redirect:/order/list";
+            return "redirect:/customer/order/list";
         }
         model.addAttribute("order", optionalOrder.get());
         model.addAttribute("userProfile", optionalOrder.get().getOwner().getUserProfile());

@@ -24,7 +24,7 @@
             <tr th:each="order: ${orders}">
                 <td th:text="${order.createdAt}"></td>
                 <td th:text="${order.status}"></td>
-                <td><a th:href="@{/order/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a> </td>
+                <td><a th:href="@{/customer/order/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a> </td>
             </tr>
             </tbody>
             <tfoot></tfoot>

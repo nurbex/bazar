@@ -24,6 +24,7 @@
         <th>Order Placed At</th>
         <th>Order Status</th>
         <th>Owner</th>
+        <th>Details</th>
         <th>-</th>
       </tr>
       </thead>
@@ -33,9 +34,13 @@
         <td th:text="${order.status}"></td>
         <td>
           <span th:text="${order.owner.username}"></span>
-          <a class="text-decoration-none" th:href="@{/admin/order/{id}/update_status (id=${order.id})}">Change Status</a>
         </td>
-        <td><a class="text-decoration-none" th:href="@{/admin/order/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a> </td>
+        <td>
+          <a class="text-decoration-none" th:href="@{/admin/order/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a>
+        </td>
+        <td>
+          <a class="btn btn-outline-success btn-sm" th:href="@{/admin/order/{id}/update_status (id=${order.id})}">Change Status</a>
+        </td>
       </tr>
       </tbody>
       <tfoot></tfoot>

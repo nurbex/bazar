@@ -36,10 +36,15 @@
           <span th:text="${order.owner.username}"></span>
         </td>
         <td>
-          <a class="text-decoration-none" th:href="@{/admin/order/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a>
+          <a class="text-decoration-none" th:href="@{/admin/orders/details/{id}(id=${order.id})}" th:text="${order.orderItems.size} + ' items'"></a>
         </td>
         <td>
-          <a class="btn btn-outline-success btn-sm" th:href="@{/admin/order/{id}/update_status (id=${order.id})}">Change Status</a>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
+            <a class="btn btn-outline-secondary btn-sm"
+               th:each="status: ${statuses}"
+               th:href="@{/admin/orders/update/{id}/status/{status} (id=${order.id}, status=${status})}"
+               th:text="${status}"></a>
+          </div>
         </td>
       </tr>
       </tbody>

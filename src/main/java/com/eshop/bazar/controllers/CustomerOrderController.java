@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Controller
 @SessionAttributes("cart")
 @RequestMapping("/customer/order")
-public class OrderController {
+public class CustomerOrderController {
 
     @Autowired
     OrderService orderService;

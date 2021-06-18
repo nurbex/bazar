@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/admin/files")
-public class FileHandlerController {
+public class AdminFileHandlerController {
 
     @Autowired
     AwsS3Service awsS3Service;

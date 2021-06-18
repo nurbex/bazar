@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/inventory")
-public class InventoryController {
+public class AdminInventoryController {
 
     @Autowired
     StoreService storeService;

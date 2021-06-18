@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/products")
-public class ProductController {
+public class AdminProductController {
     @Autowired
     ProductService productService;
 

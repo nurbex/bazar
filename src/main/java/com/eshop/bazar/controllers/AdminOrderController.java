@@ -36,9 +36,11 @@ public class AdminOrderController {
         if (!optionalAdminAuthority.isPresent()){
             return "redirect:/login";
         }
+        String currentOrderListByStatus= status;
 
         model.addAttribute("orders", orderService.getAllListOfOrderByStatus(Order.STATUS.valueOf(status)));
         model.addAttribute("statuses", Order.STATUS.values());
+        model.addAttribute("currentOrderListByStatus", currentOrderListByStatus);
         return "admin_order_list";
     }
     @GetMapping("/details/{id}")

@@ -11,7 +11,7 @@
 	<groupId>com.e-shop</groupId>
 	<artifactId>bazar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>bazar</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -89,6 +89,12 @@
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

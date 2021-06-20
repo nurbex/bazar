@@ -52,16 +52,26 @@ public class AdminInventoryController {
     public String listOfProducts(@RequestParam Long storeId, Model model){
 
         Boolean isFirstTimeAccess = new Boolean(false);
+        String currentStoresList="";
 
         if (storeId == -1) {
-            isFirstTimeAccess = new Boolean(true);
+            if(storeService.getStoreList().isEmpty()){
+                isFirstTimeAccess = new Boolean(true);
+            }
+            else{
+                model.addAttribute("inventoryList",
+                        inventoryService.getProductList(storeService.getStoreList().stream().findFirst().get().getId()));
+                currentStoresList=storeService.getStoreList().stream().findFirst().get().getName();
+            }
         }
         else {
             model.addAttribute("inventoryList",
                     inventoryService.getProductList(storeId));
+            currentStoresList=storeService.getStoreById(storeId).get().getName();
         }
         model.addAttribute("isFirstTimeAccess", isFirstTimeAccess);
         model.addAttribute("stores", storeService.getStoreList());
+        model.addAttribute("currentStoresList", currentStoresList);
         return "inventory_list";
     }
 }

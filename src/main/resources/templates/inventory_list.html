@@ -10,9 +10,12 @@
 </head>
 <body>
 <section layout:fragment="content">
-  <ul class="nav justify-content-center">
+  <ul class="nav justify-content-center gap-2">
     <li class="nav-item"  th:each="store : ${stores}">
-      <a class="nav-link active" th:href="@{/admin/inventory/list(storeId=${store.id})}" th:text="${store.name}"></a>
+      <a class="btn btn-sm"
+         th:classappend="${store.name == currentStoresList} ? 'btn-primary' : 'btn-outline-secondary'"
+         th:href="@{/admin/inventory/list(storeId=${store.id})}"
+         th:text="${store.name}"></a>
     </li>
   </ul>
 

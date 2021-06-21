@@ -10,37 +10,39 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <div class="container-fluid">
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <div class="card">
-                    <div class="card-header">
-                        Featured
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Accept Product to Store</h5>
-                        <ul class="card-text">
-                            <li th:text="${product.name}"></li>
-                            <li th:text="${product.price}"></li>
-                            <li th:text="${product.size}"></li>
-
-                        </ul>
-                        <div class="md-3">
-                            <form method="POST" action="/admin/inventory/accept_product">
-                                <input hidden type="text" name="productId" th:value="${product.id}"/>
-                                <select class="form-select" name="storeId" >
-                                    <option th:each="store : ${stores}" th:value="${store.id}" th:text="${store.name}"></option>
-                                </select>
-
-                                <input type="text" name="quantity" class="form-control"/>
-                                <input type="submit" class="btn btn-primary">
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
+    <h1>Accept Product to Store:</h1>
+    <div class="container">
+        <div class="row g-3 my-3">
+            <div class="col-6">
+                <label for="pname" class="form-label">Product name:</label>
+                <input type="text" id="pname" name="name" th:field="${product.name}" readonly class="form-control">
             </div>
-        </main>
+            <div class="col-6">
+                <label for="price" class="form-label">Product Price:</label>
+                <input type="text" id="price" name="price" th:field="${product.price}" readonly class="form-control">
+            </div>
+            <div class="col-6">
+                <label for="size" class="form-label">Product Size:</label>
+                <input type="text" id="size" name="size" th:field="${product.size}" readonly class="form-control">
+            </div>
+        </div>
+
+        <form class="row g-3" method="POST" action="/admin/inventory/accept_product">
+            <div class="col-6">
+                <input hidden type="text" name="productId" th:value="${product.id}"/>
+                <label for="store" class="form-label">Select Store:</label>
+                <select class="form-select" id="store" name="storeId">
+                    <option th:each="store : ${stores}" th:value="${store.id}" th:text="${store.name}"></option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="quantity" class="form-label">Quantity:</label>
+                <input type="text" id="quantity" name="quantity" class="form-control"/>
+            </div>
+            <div class="col-6">
+                <input type="submit" class="btn btn-primary">
+            </div>
+        </form>
     </div>
 </section>
 

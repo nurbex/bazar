@@ -14,12 +14,12 @@
     <h2>Order List</h2>
 
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <a class="btn btn-secondary" th:href="@{/admin/orders/list/{status}(status=NEW)}"
-         th:classappend="${'NEW' == currentOrderListByStatus} ? 'btn-info' : ''">New</a>
-      <a class="btn btn-secondary" th:href="@{/admin/orders/list/{status}(status=INPROGRESS)}"
-         th:classappend="${'INPROGRESS' == currentOrderListByStatus} ? 'btn-warning' : ''">InProgress</a>
-      <a class="btn btn-secondary" th:href="@{/admin/orders/list/{status}(status=COMPLETED)}"
-         th:classappend="${'COMPLETED' == currentOrderListByStatus} ? 'btn-success' : ''">Completed</a>
+      <a class="btn" th:href="@{/admin/orders/list/{status}(status=NEW)}"
+         th:classappend="${'NEW' == currentOrderListByStatus} ? 'btn-info' : 'btn-secondary'">New</a>
+      <a class="btn " th:href="@{/admin/orders/list/{status}(status=INPROGRESS)}"
+         th:classappend="${'INPROGRESS' == currentOrderListByStatus} ? 'btn-warning' : 'btn-secondary'">InProgress</a>
+      <a class="btn " th:href="@{/admin/orders/list/{status}(status=COMPLETED)}"
+         th:classappend="${'COMPLETED' == currentOrderListByStatus} ? 'btn-success' : 'btn-secondary'">Completed</a>
     </div>
     <table class="table">
       <thead>

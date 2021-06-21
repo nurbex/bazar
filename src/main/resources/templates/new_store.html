@@ -12,8 +12,6 @@
 <section layout:fragment="content">
   <h1>Create Store</h1>
   <div class="container">
-    <div class="row">
-
         <form class="row g-3" th:action="@{/admin/stores}" method="POST" th:object="${store}">
           <div class="col-md-6">
             <input hidden type="text" id="sid" name="id" th:field="*{id}" class="form-control">
@@ -57,8 +55,6 @@
             <input class="btn btn-success" type="submit" value="Create/Update" >
           </div>
         </form>
-
-    </div>
   </div>
 </section>
 

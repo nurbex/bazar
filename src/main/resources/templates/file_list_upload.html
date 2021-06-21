@@ -10,7 +10,7 @@
 </head>
 <body>
 <section layout:fragment="content">
-  <h1 class="h2">Products</h1>
+  <h1 class="h2">Images</h1>
   <div class="alert alert-success" role="alert" th:if="${message}">
     <h3 th:text="${message}"></h3>
   </div>
@@ -34,7 +34,7 @@
     <tr th:each="image : ${files}">
       <td th:text="${image.name}"></td>
       <td><img th:src="@{${image.link}}" class="img-thumbnail" width="200" height="200"></td>
-      <td><a class="btn btn-danger" th:href="@{/admin/files/delete(key=${image.name})}">Delete</a></td>
+      <td><a class="btn btn-outline-danger btn-sm" th:href="@{/admin/files/delete(key=${image.name})}">Delete</a></td>
     </tr>
     </tbody>
   </table>

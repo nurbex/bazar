@@ -6,6 +6,8 @@
 <!-- CSS only -->
 <head>
   <meta charset="UTF-8">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/styles/global.css}" rel="stylesheet">
   <title>Customer</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
   <script src="https://js.stripe.com/v3/"></script>
@@ -60,11 +62,11 @@
       </div>
     </div>
     <div class="col">
-      <form id="payment-form">
+      <form class="checkoutForm" id="payment-form">
 
         <div id="card-element"><!--Stripe.js injects the Card Element--></div>
 
-        <button id="submit">
+        <button class="checkoutButton" id="submit">
 
           <div class="spinner hidden" id="spinner"></div>
 

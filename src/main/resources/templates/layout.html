@@ -39,10 +39,10 @@
             <a class="nav-link active" aria-current="page" th:href="@{/}">Bazar.net</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ADMIN')">Admin Dashboard</a>
+            <a class="nav-link" href="/admin" sec:authorize="hasAnyAuthority('ADMIN', 'VISITOR')">Admin Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer" sec:authorize="hasAuthority('USER')">Customer</a>
+            <a class="nav-link" href="/customer" sec:authorize="hasAnyAuthority('USER', 'VISITOR')">Customer</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register" sec:authorize="!isAuthenticated()">Sign-Up</a>

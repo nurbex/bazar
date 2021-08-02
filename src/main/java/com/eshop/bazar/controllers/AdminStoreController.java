@@ -35,7 +35,7 @@ public class AdminStoreController {
 
     @PostMapping
     public String createStore(Authentication authentication, Store store){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             storeService.createOrUpdateStore(store);
         }else{
             System.out.println("Store not created, you are not admin.");
@@ -57,10 +57,12 @@ public class AdminStoreController {
 
     @GetMapping("/delete")
     public String deleteStore(Authentication authentication, @RequestParam Long id) {
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             storeService.deleteStore(id);
         }else{
             System.out.println("Store not deleted, you are not admin.");
+            System.out.println(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN")) + " getauthorities " +authentication.getAuthorities().stream().count());
+
         }
         return "redirect:/admin/stores/list";
     }

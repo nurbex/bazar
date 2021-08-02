@@ -5,6 +5,7 @@ import com.eshop.bazar.services.ImageService;
 import com.eshop.bazar.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,23 +43,31 @@ public class AdminProductController {
     }
 
     @GetMapping("/new")
-    public String newProduct(Model model){
+    public String newProduct( Model model){
+
         model.addAttribute("images", imageService.getImageList());
         model.addAttribute("product", new Product());
         return "new_product";
     }
 
     @PostMapping
-    public String createProduct(Product product){
-        productService.createOrUpdateProduct(product);
+    public String createProduct(Authentication authentication, Product product){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            productService.createOrUpdateProduct(product);
+        }else{
+            System.out.println("Product not created, you are not admin.");
+        }
         return "redirect:/admin/products/page/0";
     }
 
     @GetMapping("/delete")
-    public String deleteProduct(@RequestParam Long id){
-
-        productService.deleteProduct(id);
-        return "redirect:/admin/products";
+    public String deleteProduct(Authentication authentication, @RequestParam Long id){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            productService.deleteProduct(id);
+        }else{
+            System.out.println("Product not deleted, you are not admin.");
+        }
+        return "redirect:/admin/products/page/0";
     }
 
     @GetMapping("/edit")
@@ -73,8 +82,12 @@ public class AdminProductController {
     }
 
     @PostMapping("/edit")
-    public String saveProduct(Product product){
-        productService.createOrUpdateProduct(product);
+    public String saveProduct(Authentication authentication, Product product){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            productService.createOrUpdateProduct(product);
+        }else{
+            System.out.println("Product not created, you are not admin.");
+        }
         return "redirect:/admin/products";
     }
 }

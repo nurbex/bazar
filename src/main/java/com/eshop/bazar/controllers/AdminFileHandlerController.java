@@ -30,7 +30,7 @@ public class AdminFileHandlerController {
 
     @PostMapping
     public String uploadFiles(Authentication authentication, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             //  System.out.println("content type "+file.getContentType());
             if (file.getContentType().contains("image")){
                 awsS3Service.upload(file);
@@ -46,7 +46,7 @@ public class AdminFileHandlerController {
 
     @GetMapping("/delete")
     public String deleteImage(Authentication authentication, @RequestParam String key, RedirectAttributes redirectAttributes){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             awsS3Service.delete(key);
             redirectAttributes.addFlashAttribute("message", key+" is deleted successfully");
         }else{

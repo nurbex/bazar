@@ -52,7 +52,7 @@ public class AdminProductController {
 
     @PostMapping
     public String createProduct(Authentication authentication, Product product){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             productService.createOrUpdateProduct(product);
         }else{
             System.out.println("Product not created, you are not admin.");
@@ -62,7 +62,7 @@ public class AdminProductController {
 
     @GetMapping("/delete")
     public String deleteProduct(Authentication authentication, @RequestParam Long id){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             productService.deleteProduct(id);
         }else{
             System.out.println("Product not deleted, you are not admin.");
@@ -83,7 +83,7 @@ public class AdminProductController {
 
     @PostMapping("/edit")
     public String saveProduct(Authentication authentication, Product product){
-        if(authentication.getAuthorities().contains("ADMIN")){
+        if(authentication.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN"))){
             productService.createOrUpdateProduct(product);
         }else{
             System.out.println("Product not created, you are not admin.");

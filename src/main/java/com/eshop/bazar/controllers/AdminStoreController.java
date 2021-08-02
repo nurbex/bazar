@@ -3,6 +3,7 @@ package com.eshop.bazar.controllers;
 import com.eshop.bazar.domain.Store;
 import com.eshop.bazar.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,12 @@ public class AdminStoreController {
     }
 
     @PostMapping
-    public String createStore(Store store){
-        storeService.createOrUpdateStore(store);
+    public String createStore(Authentication authentication, Store store){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            storeService.createOrUpdateStore(store);
+        }else{
+            System.out.println("Store not created, you are not admin.");
+        }
         return "redirect:/admin/stores/list";
     }
 
@@ -51,8 +56,12 @@ public class AdminStoreController {
     }
 
     @GetMapping("/delete")
-    public String deleteStore(@RequestParam Long id) {
-        storeService.deleteStore(id);
+    public String deleteStore(Authentication authentication, @RequestParam Long id) {
+        if(authentication.getAuthorities().contains("ADMIN")){
+            storeService.deleteStore(id);
+        }else{
+            System.out.println("Store not deleted, you are not admin.");
+        }
         return "redirect:/admin/stores/list";
     }
 }

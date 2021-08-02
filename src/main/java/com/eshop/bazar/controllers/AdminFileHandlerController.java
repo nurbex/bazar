@@ -2,6 +2,7 @@ package com.eshop.bazar.controllers;
 
 import com.eshop.bazar.services.AwsS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,22 +29,29 @@ public class AdminFileHandlerController {
 
 
     @PostMapping
-    public String uploadFiles(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
-        //  System.out.println("content type "+file.getContentType());
-        if (file.getContentType().contains("image")){
-            awsS3Service.upload(file);
-            redirectAttributes.addFlashAttribute("message", "Uploaded successfully");
-        } else {
-            redirectAttributes.addFlashAttribute("error", "I accept only Images.");
+    public String uploadFiles(Authentication authentication, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            //  System.out.println("content type "+file.getContentType());
+            if (file.getContentType().contains("image")){
+                awsS3Service.upload(file);
+                redirectAttributes.addFlashAttribute("message", "Uploaded successfully");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "I accept only Images.");
+            }
+        }else{
+            System.out.println("File not saved, you are not admin.");
         }
         return "redirect:/admin/files";
     }
 
     @GetMapping("/delete")
-    public String deleteImage(@RequestParam String key, RedirectAttributes redirectAttributes){
-        awsS3Service.delete(key);
-        redirectAttributes.addFlashAttribute("message", key+" is deleted successfully");
-
+    public String deleteImage(Authentication authentication, @RequestParam String key, RedirectAttributes redirectAttributes){
+        if(authentication.getAuthorities().contains("ADMIN")){
+            awsS3Service.delete(key);
+            redirectAttributes.addFlashAttribute("message", key+" is deleted successfully");
+        }else{
+            System.out.println("File not deleted, you are not admin.");
+        }
         return "redirect:/admin/files";
     }
 
